@@ -1,4 +1,5 @@
 from flight_routes import FlightRoutes
+from graph import Graph
 
 
 class Main:
@@ -28,3 +29,7 @@ class Main:
 
             if user_choice == 'Q':
                 loop_control = 1
+
+    # Discarded. No need for plotting the graph
+    # Plot the graph
+    # flight_routes.graph.plot_graph()
