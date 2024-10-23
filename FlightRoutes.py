@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 
 
 class FlightRoutes:
@@ -78,3 +78,30 @@ class FlightRoutes:
 
         return component_map, scc_directed_graph
 
+    # Function to find the minimum number of routes to make all airports reachable
+    def find_min_routes_to_reach_all(self):
+        # Step 1: Find all strongly connected components
+        strongly_connected_comp = self.get_connected_components()
+
+        # Step 2: Build the directed graph
+        connected_component_map, connected_directed_graph = self.build_scc_directed_graph(strongly_connected_comp)
+
+        # Step 3: Find the strong connected component that has the start airport in it
+        start_strong_connected_component = connected_component_map[self.start_airport]
+
+        # Step 4: Perform a depth First Search from the start component that is in the directed graph just built
+        visited_strong_components = set()
+        queue = deque([start_strong_connected_component])
+
+        while queue:
+            current_scc = queue.popleft()
+            visited_strong_components.add(current_scc)
+            for directed_graph_item in connected_directed_graph[current_scc]:
+                if directed_graph_item not in visited_strong_components:
+                    queue.append(directed_graph_item)
+
+        # Step 5: Count strong connected components that are not reachable from the start connected component
+        unreachable_strong_connected_component = len(strongly_connected_comp) - len(visited_strong_components)
+
+        # Step 6: The minimum number of additional routes is the number of unreachable Strong connected components
+        return unreachable_strong_connected_component
