@@ -1,3 +1,4 @@
+from graph import Graph
 from collections import defaultdict, deque
 
 
@@ -5,6 +6,7 @@ class FlightRoutes:
 
     # parameterised constructor for the Flight routes
     def __init__(self, airports, routes, start_airport):
+        self.graph = Graph(airports, routes)
         self.start_airport = start_airport
         self.airports = airports
         self.routes = routes
