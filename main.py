@@ -1,4 +1,4 @@
-from FlightRoutes import FlightRoutes
+from flight_routes import FlightRoutes
 
 
 class Main:
@@ -13,7 +13,6 @@ class Main:
                      ]  # Routes taken from the graph given
 
     loop_control = 0
-
     while loop_control == 0:
         # To ensure the code a user enter is converted to capital and reduce errors
         start_airport = input("\nEnter Starting Airport id using the airport code for me to analyse for you: ").upper()
