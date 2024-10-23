@@ -20,3 +20,8 @@ Plans routes for aviation with specified airport routes
 
 **NOTE**: 
 Our requirement goes beyond `Kosaraju’s Algorithm` by constructing the missing edge from the starting node to determine the minimum required length.
+
+
+### Sample Run of the program
+![img.png](img.png)
+
