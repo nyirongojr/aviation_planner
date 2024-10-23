@@ -60,5 +60,21 @@ class FlightRoutes:
 
         return strongly_connected_components
 
-    
+    # Build a directed graph from the Strongly Connected component
+    def build_scc_directed_graph(self, strongly_connected_components):
+        component_map = {}
+        scc_directed_graph = defaultdict(set)
+
+        # Map each airport to its SCC index
+        for idx, scc in enumerate(strongly_connected_components):
+            for airport in scc:
+                component_map[airport] = idx
+
+        # Build the DAG where nodes are SCCs and edges are between SCCs
+        for u in self.graph.graph:
+            for v in self.graph.graph[u]:
+                if component_map[u] != component_map[v]:
+                    scc_directed_graph[component_map[u]].add(component_map[v])
+
+        return component_map, scc_directed_graph
 
